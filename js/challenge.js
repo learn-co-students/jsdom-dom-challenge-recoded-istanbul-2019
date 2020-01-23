@@ -1,17 +1,19 @@
 let counter = document.getElementById("counter")
-let inc = 1
+let inc = 1,n=1;
 let pls = document.querySelector("#plus")
 let minus = document.querySelector("#minus")
 let heart = document.querySelector("#heart")
 let pause = document.querySelector("#pause")
 let commint = document.querySelector("#submit")
 function incress(){
-    let a =  parseInt(counter.innerText)
+    let a =  parseInt(counter.innerText);
     a += inc;
-    counter.innerText = a
+    counter.innerText = a;
+    n = 1;
 }
 
-setInterval(incress,1000)
+setInterval(incress,1000);
+
 pls.addEventListener("click",incress);
 
 minus.addEventListener("click",function() {
@@ -21,10 +23,17 @@ minus.addEventListener("click",function() {
 })
 
 heart.addEventListener("click",function(){
+    if (n>1){
+        let el = document.querySelectorAll("ul li")
+        el[el.length-1].innerHTML = `${counter.textContent} has been liked ${n} time`
+        n++;
+    }else{
     let a = document.createElement("li");
     a.innerHTML = `${counter.textContent} has been liked 1 time
     `
     document.querySelector(".likes").appendChild(a)
+    n++;
+    }
 })
 
 commint.addEventListener("click",function(e){
