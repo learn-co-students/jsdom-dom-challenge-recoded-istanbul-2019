@@ -12,7 +12,7 @@ function incress(){
     n = 1;
 }
 
-setInterval(incress,1000);
+let t = setInterval(incress,1000);
 
 pls.addEventListener("click",incress);
 
@@ -49,12 +49,12 @@ pause.addEventListener("click",function(){
         minus.disabled = true;
         heart.disabled = true;
         commint.disabled = true;
-        inc = 0
+        clearInterval(t)
     }else{
         pls.disabled = false;
         minus.disabled = false;
         heart.disabled = false;
         commint.disabled = false;
-        inc =1
+        t = setInterval(incress,1000);
     }
 })
