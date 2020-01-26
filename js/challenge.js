@@ -1,5 +1,5 @@
 let counter = document.getElementById("counter")
-let inc = 1,n=1;
+let n=1;
 let pls = document.querySelector("#plus")
 let minus = document.querySelector("#minus")
 let heart = document.querySelector("#heart")
@@ -7,7 +7,7 @@ let pause = document.querySelector("#pause")
 let commint = document.querySelector("#submit")
 function incress(){
     let a =  parseInt(counter.innerText);
-    a += inc;
+    a += 1;
     counter.innerText = a;
     n = 1;
 }
@@ -18,7 +18,7 @@ pls.addEventListener("click",incress);
 
 minus.addEventListener("click",function() {
     let b = parseInt(counter.innerText)
-    b -= inc;
+    b -= 1;
     counter.innerText = b
 })
 
