@@ -1,15 +1,15 @@
 // counter + add and minus second
-let num = 0;
+let currentSecond = 0;
 let shouldPauseInterval = true;
 
 function addSecond(){
-    num = num + 1;
-    document.getElementById('counter').innerHTML = num;
+    currentSecond = currentSecond + 1;
+    document.getElementById('counter').innerHTML = currentSecond;
 };
 
 function minusSecond(){
-    num = num - 1;
-    document.getElementById('counter').innerHTML = num;
+    currentSecond = currentSecond - 1;
+    document.getElementById('counter').innerHTML = currentSecond;
 };
 
 let interval = window.setInterval(addSecond, 1000);
@@ -34,30 +34,36 @@ plusButton.addEventListener("click", addSecond);
 minusButton.addEventListener("click", minusSecond);
 
 // add likes
-const ul = document.getElementById('list');
-let likeNum = 1;
+const heartButton = document.getElementById('heart');
+const ul = document.getElementById('likes');
+let lastLikedSecond;
+let likeNum;
 
 function addLike(){
-   likeNum = likeNum ++;
-   let li = document.createElement("li");
-   li.innerHTML = num + " has been liked "  + likeNum + " time";
-   ul.appendChild(li);
+    if (currentSecond === lastLikedSecond) {
+        likeNum = likeNum + 1;
+        ul.lastChild.innerHTML = currentSecond + " has been liked "  + likeNum + " time";
+    } else {
+        likeNum = 1;
+        let li = document.createElement("li");
+        li.innerHTML = currentSecond + " has been liked "  + likeNum + " time";
+        ul.appendChild(li);
+    }
+    lastLikedSecond = currentSecond;
 }
-document.getElementById('heart').addEventListener("click", addLike);
+heartButton.addEventListener("click", addLike);
 
 // add comments
-function addComment(){
-    let li = document.createElement("li");
+function addComment(event){
+    event.preventDefault();
     let inputValue = document.getElementById("comment-input").value;
-    li.innerHTML = inputValue;
-    if (inputValue === '') {
+    if (!inputValue) {
         alert("You must write something!");
     } else {
+        let li = document.createElement("li");
+        li.innerHTML = inputValue;
         document.getElementById("list").appendChild(li);
     }
     document.getElementById("comment-input").value = "";
 }
-document.getElementById("submit").addEventListener("click", function(event){
-    event.preventDefault();
-    addComment();
- });
+document.getElementById("submit").addEventListener("click", addComment);
