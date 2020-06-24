@@ -4,8 +4,6 @@ let minus = document.getElementById("minus");
 let heart = document.getElementById("heart");
 let pause = document.getElementById("pause");
 let likes = document.getElementsByClassName("likes")[0];
-let comments = document.getElementsByClassName("comments")[0];
-let commentInput = document.getElementById("comment-input");
 
 function incrementCounter() {
     counter.innerText = parseInt(counter.innerText, 10) + 1;
